@@ -1,0 +1,16 @@
+View definition:
+ SELECT h3.name AS csid, c.data AS md5, c.name AS contentname, 
+    replace(c.name::text, 'OriginalJpeg_'::text, ''::text) AS filename, 
+    regexp_split_to_array(c.name::text, '[_.]'::text) AS nameparts, 
+    cc.updatedat
+   FROM content c
+   JOIN hierarchy h1 ON c.id::text = h1.id::text AND h1.primarytype::text = 'content'::text
+   JOIN view v ON h1.parentid::text = v.id::text AND v.title = 'OriginalJpeg'::text
+   JOIN hierarchy h2 ON v.id::text = h2.id::text AND h2.primarytype::text = 'view'::text
+   JOIN picture p ON p.id::text = h2.parentid::text
+   JOIN blobs_common b ON b.repositoryid::text = p.id::text AND b.mimetype::text = 'image/tiff'::text
+   JOIN hierarchy h3 ON h3.id::text = b.id::text AND h3.primarytype::text = 'Blob'::text
+   JOIN collectionspace_core cc ON b.id::text = cc.id::text
+   JOIN misc m ON h3.id::text = m.id::text AND m.lifecyclestate::text <> 'deleted'::text;
+
+
