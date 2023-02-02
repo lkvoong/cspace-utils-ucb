@@ -1,12 +1,12 @@
 -- HMP-265: Run the sql to create new functions for PAHMA Object Class Hierarchy.
 -- Run order:
---   1) utils.createObjectClassHierarchyTable()
+--   1) ...pahma/hierarchies/objectclass_hierarchy/CreateObjectclassHierarchyTable.sql
 --      select utils.createObjectClassHierarchyTable();
---   2) utils.populateObjectClassHierarchyTable()
+--   2) ...pahma/hierarchies/objectclass_hierarchy/PopulateObjectclassHierarchyTable.sql
 --      select utils.populateObjectClassHierarchyTable();
---   3) utils.updateObjectClassHierarchyTable()
+--   3) ...pahma/hierarchies/objectclass_hierarchy/UpdateObjectclassHierarchyTable.sql
 --      select utils.updateObjectClassHierarchyTable();
---   4) utils.refreshObjectclassHierarchyTable()
+--   4) ...pahma/hierarchies/objectclass_hierarchy/RefreshObjectclassHierarchyTable.sql
 --      select utils.refreshObjectclassHierarchyTable();
 --
 
@@ -46,6 +46,7 @@ select utils.createObjectClassHierarchyTable();
 
 CREATE OR REPLACE FUNCTION utils.populateObjectclassHierarchyTable() RETURNS void AS
 $$
+BEGIN
   IF EXISTS ( SELECT relname
               FROM pg_catalog.pg_class c
               JOIN pg_catalog.pg_namespace n ON (n.oid = c.relnamespace)
@@ -57,8 +58,8 @@ $$
 
     WITH objectclass_hierarchyquery AS (
       SELECT
-        h.name objectclasscsid,
-        getdispl(cnc.refname) objectclass,
+        hccs.name objectclasscsid,
+        getdispl(ccs.refname) objectclass,
         rc.objectcsid broaderobjectclasscsid,
         getdispl(cco.refname) broaderobjectclass
       FROM public.concepts_common ccs
@@ -140,7 +141,6 @@ select utils.updateObjectClassHierarchyTable();
 
 CREATE OR REPLACE FUNCTION utils.refreshObjectclassHierarchyTable() RETURNS void AS
 $$
-BEGIN
    insert into utils.refresh_log (msg) values ( 'Creating objectclass_hierarchy table' );
    select utils.createObjectclassHierarchyTable();
 
@@ -151,9 +151,8 @@ BEGIN
    select utils.updateObjectclassHierarchyTable();
 
    insert into utils.refresh_log (msg) values ( 'All done' );
-END;
 $$
-LANGUAGE plpgsql;
+LANGUAGE sql;
 
 -- Run utils.refreshObjectclassHierarchyTable(); to refresh utils.objectclass_hiearchy table.
 -- Also, to check the refresh function runs properly.

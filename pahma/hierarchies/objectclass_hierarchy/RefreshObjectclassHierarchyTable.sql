@@ -5,7 +5,6 @@
 
 CREATE OR REPLACE FUNCTION utils.refreshObjectclassHierarchyTable() RETURNS void AS
 $$
-BEGIN
    insert into utils.refresh_log (msg) values ( 'Creating objectclass_hierarchy table' );
    select utils.createObjectclassHierarchyTable();
 
@@ -16,6 +15,5 @@ BEGIN
    select utils.updateObjectclassHierarchyTable();
 
    insert into utils.refresh_log (msg) values ( 'All done' );
-END;
 $$
-LANGUAGE plpgsql;
+LANGUAGE sql;
