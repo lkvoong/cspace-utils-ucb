@@ -5,6 +5,7 @@
 
 CREATE OR REPLACE FUNCTION utils.populateObjectclassHierarchyTable() RETURNS void AS
 $$
+BEGIN
   IF EXISTS ( SELECT relname
               FROM pg_catalog.pg_class c
               JOIN pg_catalog.pg_namespace n ON (n.oid = c.relnamespace)
@@ -16,8 +17,8 @@ $$
 
     WITH objectclass_hierarchyquery AS (
       SELECT
-        h.name objectclasscsid,
-        getdispl(cnc.refname) objectclass,
+        hccs.name objectclasscsid,
+        getdispl(ccs.refname) objectclass,
         rc.objectcsid broaderobjectclasscsid,
         getdispl(cco.refname) broaderobjectclass
       FROM public.concepts_common ccs
