@@ -3,10 +3,11 @@ CHANGELOG for cspace-utils-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 1.0.0-rc1
-Thu Feb  2 09:25:45 PST 2023
+This is version 1.0.0
+Thu Feb  2 09:26:31 PST 2023
 
-8fe20c7 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #7 from jblowe/main
+9cde92b (HEAD -> main, tag: 1.0.0-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 1.0.0-rc1
+8fe20c7 Merge pull request #7 from jblowe/main
 728298f (origin/qa, qa) HMP-270: eliminate invocation of checkstatus.sql; we at RTL will do this
 1ef8546 Merge pull request #6 from lkvoong/HMP-265-qa
 657980f NOJIRA: remove crontab file
