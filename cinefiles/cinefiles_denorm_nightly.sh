@@ -10,8 +10,6 @@
 # executed to create indexes.
 #
 
-# source ${HOME}/pipeline-config.sh # WE WANT TO BE SELF CONTAINED
-
 export BASEDIR=${HOME}/cspace-utils-ucb/cinefiles
 export SCRIPTDIR=$BASEDIR/scripts
 export PGUSER=nuxeo_cinefiles
