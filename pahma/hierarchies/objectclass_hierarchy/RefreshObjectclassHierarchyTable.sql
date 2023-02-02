@@ -1,10 +1,10 @@
--- refreshObjectclassHierarchyTable
+-- utils.refreshObjectclassHierarchyTable()
 --
 --  A function to keep the objectclass_hierarchy table up to date.
---  It is called from a nightly cron job
+--  It is called from a nightly cron job and logs to utils.refresh_log table.
 
-CREATE OR REPLACE FUNCTION utils.refreshObjectclassHierarchyTable() RETURNS void
-AS $$
+CREATE OR REPLACE FUNCTION utils.refreshObjectclassHierarchyTable() RETURNS void AS
+$$
    insert into utils.refresh_log (msg) values ( 'Creating objectclass_hierarchy table' );
    select utils.createObjectclassHierarchyTable();
 
@@ -16,4 +16,4 @@ AS $$
 
    insert into utils.refresh_log (msg) values ( 'All done' );
 $$
-LANGUAGE sql
+LANGUAGE sql;
