@@ -6,6 +6,17 @@ export PGPORT="54321"
 export EMAIL_FROM="cspace-support@lists.berkeley.edu"
 export CONTACT="$1"
 
+regex="^(([-a-zA-Z0-9\!#\$%\&\'*+/=?^_\`{\|}~]+|(\"([][,:;<>\&@a-zA-Z0-9\!#\$%\&\'*+/=?^_\`{\|}~-]|(\\\\[\\ \"]))+\"))\.)*([-a-zA-Z0-9\!#\$%\&\'*+/=?^_\`{\|}~]+|(\"([][,:;<>\&@a-zA-Z0-9\!#\$%\&\'*+/=?^_\`{\|}~-]|(\\\\[\\ \"]))+\"))@\w((-|\w)*\w)*\.(\w((-|\w)*\w)*\.)*\w{2,4}$"
+
+if [[ ! "${CONTACT}" =~ $regex ]] ; then
+  echo
+  echo "'${CONTACT}' does not look like an email address."
+  echo "invoke as follows:"
+  echo "$0 someone@berkeley.edu"
+  echo
+  exit 1
+fi
+
 DATE=`date +"%Y%m%d-%H%M%S"`
 OUTPUT_DIR="/cspace/cspace-users/${DATE}"
 mkdir -p ${OUTPUT_DIR}
