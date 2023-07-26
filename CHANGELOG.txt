@@ -1,0 +1,35 @@
+CHANGELOG for cspace-utils-ucb
+
+OK, it is not a *real* change log, but a list of changes resulting from git log
+sometimes with some human annotation after the fact.
+
+This is version 1.0.0
+Thu Feb  2 09:26:31 PST 2023
+
+9cde92b (HEAD -> main, tag: 1.0.0-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 1.0.0-rc1
+8fe20c7 Merge pull request #7 from jblowe/main
+728298f (origin/qa, qa) HMP-270: eliminate invocation of checkstatus.sql; we at RTL will do this
+1ef8546 Merge pull request #6 from lkvoong/HMP-265-qa
+657980f NOJIRA: remove crontab file
+ab39a68 NOJIRA: remove extraneous line from cinefiles_denorm_nightly.sh
+466710f Merge pull request #5 from lkvoong/HMP-265-qa
+f73d0d9 HMP-265-qa: fix typos in PopObjclassHierTab, RefObjclassHierTab, update HMP-265.sql
+2e21f92 HMP-270: tidy up cspace-utils-ucb a bit, update README
+6c4f3fd Merge pull request #4 from lkvoong/HMP-270-qa
+d06730a HMP-265: add script to deploy Object Class Hierarchy
+6a9f9bb HMP-265: Update RefObjClassHierTab to add notes and change to plpgsql for consistency
+17b3e47 HMP-265: Update UpdObjClassHierTab to add notes
+6086d78 HMP-265: Update PopObjClassHierTab to check if tab exists; add join to conceptauthorities_common
+9880021 HMP-265: Update CreateObjClassHierTab to drop/recreate table
+b879567 HMP-270-qa: update checkstatus and pahma_refresh to add objectclass
+eed6eca Merge pull request #3 from cspace-deployment/main
+14a6730 Merge pull request #2 from lkvoong/HMP-270
+50f892b HMP-270: restore checkstatus and pahma_refresh; changes should be added to qa branch
+f401735 HMP-270: add objectclass to checkstatus, update pahma_refresh.sh, update/rename pahma_refresh_ucb.sh
+f3e28b1 HMP-270: move crontab, denorm_init, denorm_nightly
+b0e999d HMP-270: revert UCB pahma_refresh.sh to main dir; add LYR pahma_refresh.sh to pahma dir
+818bcf1 HMP-270: move pahma_refresh.sh, add checkstatus.sql
+5255962 HMP-270: move cinefiles_denorm_nightly.sh under cinefiles directory
+24a0fda Merge pull request #1 from jblowe/main
+186c207 HMP-265: code for PAHMA Hierarchies and CineFiles Denorm, for LYRASIS
+5f13aa9 Initial commit
