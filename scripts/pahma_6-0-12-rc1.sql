@@ -10,7 +10,7 @@
 -- BEGIN PAHMA CSC-2217
 --
 UPDATE movements_anthropology_locationhandlers
-SET item = regexp_replace(lh.item, ' \[died 2008\]', '')
+SET item = regexp_replace(item, ' \[died 2008\]', '')
 WHERE item ='urn:cspace:pahma.cspace.berkeley.edu:personauthorities:name(person):item:name(7215)''Benjamin Peters [died 2008]''';
 --
 -- END PAHMA CSC-2217
