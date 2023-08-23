@@ -14,8 +14,10 @@ DECLARE
 BEGIN
   IF EXISTS (SELECT 1 FROM information_schema.schemata WHERE schema_name = 'utils')
   THEN
-    SELECT regexp_replace(current_database(), '^.*_', 'reader_') INTO reader_name;
-    SELECT regexp_replace(current_database(), '^.*_', 'nuxeo_') INTO nuxeo_name;
+    SELECT 
+      regexp_replace(current_database(), '^.*_', 'reader_'),
+      regexp_replace(current_database(), '^.*_', 'nuxeo_') 
+    INTO reader_name, nuxeo_name;
 
     SELECT FORMAT('GRANT USAGE ON SCHEMA utils TO %I', reader_name) into sql_str;
     EXECUTE sql_str;
