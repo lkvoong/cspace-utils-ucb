@@ -7,20 +7,18 @@ $$
 DROP TABLE IF EXISTS utils.object_place_location CASCADE;
 CREATE TABLE utils.object_place_location AS
   SELECT
-      o.id,
-      l.collectionobjectcsid,
-      o.objectnumber,
-      o.numberofobjects,
-      o.placecsid,
-      p.placename,
-      p.csid_hierarchy AS place_csid_hierarchy,
-      l.storagelocation,
-      l.crate
-    FROM utils.object_place_temp o
-      LEFT OUTER JOIN  utils.placename_hierarchy p
-        ON (o.placecsid = p.placecsid)
-      LEFT OUTER JOIN  utils.current_location_temp l
-        ON (o.id = l.collectionobjectcsid);
+    o.id,
+    l.collectionobjectcsid,
+    o.objectnumber,
+    o.numberofobjects,
+    o.placecsid,
+    p.placename,
+    p.csid_hierarchy AS place_csid_hierarchy,
+    l.storagelocation,
+    l.crate
+  FROM utils.object_place_temp o
+  LEFT OUTER JOIN  utils.placename_hierarchy p ON (o.placecsid = p.placecsid)
+  LEFT OUTER JOIN  utils.current_location_temp l ON (o.id = l.collectionobjectcsid);
 
   CREATE INDEX opn_id_ndx
   ON utils.object_place_location (id);
