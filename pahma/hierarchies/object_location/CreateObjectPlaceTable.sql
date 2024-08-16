@@ -10,8 +10,8 @@ $$
     SELECT
       cc.id,
       hcc.name collectionobjectcsid,
-      ocg.objectcount objectcount,
-      cc.objectnumber numberofobjects,
+      ocg.objectcount numberofobjects,
+      cc.objectnumber objectnumber,
       pn.placecsid placecsid
     FROM collectionobjects_common cc
     JOIN misc m ON (cc.id = m.id AND m.lifecyclestate <> 'deleted')
