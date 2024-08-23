@@ -18,6 +18,10 @@
 
 -- DROP FUNCTION IF EXISTS utils.getnagpra (cocid VARCHAR);
 
+--
+-- Name: getnagpra(character varying); Type: FUNCTION; Schema: utils; Owner: nuxeo_pahma
+--
+
 CREATE OR REPLACE FUNCTION utils.getnagpra (cocid VARCHAR)
 RETURNS SETOF utils.nagpratype
 AS
@@ -185,4 +189,9 @@ $$
 LANGUAGE 'plpgsql'
 RETURNS NULL ON NULL INPUT;
 
--- GRANT EXECUTE ON FUNCTION utils.getnagpra (cocid VARCHAR) TO PUBLIC;
+-- OWNER TO nuxeo_pahma
+ALTER FUNCTION utils.getnagpra(cocid character varying) OWNER TO nuxeo_pahma;
+
+-- EXECUTE TO public
+GRANT EXECUTE ON FUNCTION utils.getnagpra (cocid VARCHAR) TO public;
+
