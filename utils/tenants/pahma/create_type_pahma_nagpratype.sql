@@ -2,12 +2,12 @@
 -- for the pahmapahmaRepatriationNAGPRAdenorm.jrxml report.
 -- Must be created before function utils.getnagpra(cocid varchar).
 
-DROP TYPE IF EXISTS nagpratype;
+DROP TYPE IF EXISTS utils.nagpratype CASCADE;
 
-CREATE TYPE nagpratype AS (
+CREATE TYPE utils.nagpratype AS (
     cocsid varchar,
     coid varchar,
-    pos integer,
+    pos varchar,
     objectNumber varchar,
     sortableObjectNumber varchar,
     objectStatus varchar,

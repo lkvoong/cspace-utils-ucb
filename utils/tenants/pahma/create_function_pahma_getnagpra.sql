@@ -19,7 +19,7 @@
 -- DROP FUNCTION IF EXISTS utils.getnagpra (cocid VARCHAR);
 
 CREATE OR REPLACE FUNCTION utils.getnagpra (cocid VARCHAR)
-RETURNS SETOF nagpratype
+RETURNS SETOF utils.nagpratype
 AS
 $$
 
@@ -63,7 +63,7 @@ BEGIN
     CREATE TEMP TABLE getnagpra_temp (
         cocsid varchar,
         coid varchar,
-        pos integer,
+        pos varchar,
         objectNumber varchar,
         sortableObjectNumber varchar,
         objectStatus varchar,
@@ -87,23 +87,23 @@ BEGIN
     
     -- get unique positions for repeating fields/groups.
     INSERT INTO getnagpra_temp (coid, pos)
-    SELECT id, pos FROM collectionobjects_pahma_pahmaobjectstatuslist WHERE id = cocid
+    SELECT id, pos::varchar FROM collectionobjects_pahma_pahmaobjectstatuslist WHERE id = cocid
     UNION
-    SELECT id, pos FROM collectionobjects_nagpra_nagprainventorynames WHERE id = cocid
+    SELECT id, pos::varchar FROM collectionobjects_nagpra_nagprainventorynames WHERE id = cocid
     UNION
-    SELECT id, pos FROM collectionobjects_nagpra_nagpracategories WHERE id = cocid
+    SELECT id, pos::varchar FROM collectionobjects_nagpra_nagpracategories WHERE id = cocid
     UNION
-    SELECT id, pos FROM collectionobjects_nagpra_graveassoccodes WHERE id = cocid
+    SELECT id, pos::varchar FROM collectionobjects_nagpra_graveassoccodes WHERE id = cocid
     UNION
-    SELECT id, pos FROM collectionobjects_nagpra_repatriationnotes WHERE id = cocid
+    SELECT id, pos::varchar FROM collectionobjects_nagpra_repatriationnotes WHERE id = cocid
     UNION
-    SELECT id, pos FROM collectionobjects_nagpra_nagpraculturaldeterminations WHERE id = cocid
+    SELECT id, pos::varchar FROM collectionobjects_nagpra_nagpraculturaldeterminations WHERE id = cocid
     UNION
-    SELECT parentid, pos FROM hierarchy WHERE parentid = cocid AND primarytype = 'nagpraDetermGroup'
+    SELECT parentid, pos::varchar FROM hierarchy WHERE parentid = cocid AND primarytype = 'nagpraDetermGroup'
     UNION
-    SELECT parentid, pos FROM hierarchy WHERE parentid = cocid AND primarytype = 'nagpraReportFiledGroup'
+    SELECT parentid, pos::varchar FROM hierarchy WHERE parentid = cocid AND primarytype = 'nagpraReportFiledGroup'
     UNION
-    SELECT parentid, pos FROM hierarchy WHERE parentid = cocid AND primarytype = 'referenceGroup';
+    SELECT parentid, pos::varchar FROM hierarchy WHERE parentid = cocid AND primarytype = 'referenceGroup';
 
     -- get csid, objectnumber, sortableobjectnumber for collection object record.
     UPDATE getnagpra_temp SET cocsid = h.name FROM hierarchy h WHERE getnagpra_temp.coid = h.id;
@@ -117,7 +117,7 @@ BEGIN
     
         updsql := 'UPDATE getnagpra_temp SET '|| t[2] || ' = getdispl(n.item) ' ||
                   'FROM ' || t[1] || ' n ' ||
-                  'WHERE getnagpra_temp.coid = n.id AND getnagpra_temp.pos = n.pos;';
+                  'WHERE getnagpra_temp.coid = n.id AND getnagpra_temp.pos = n.pos::varchar;';
 
         --RAISE NOTICE 'updsql for %: %', t[1], updsql;
 
@@ -134,7 +134,7 @@ BEGIN
     FROM nagpradetermgroup n join hierarchy h on (n.id = h.id)
     WHERE getnagpra_temp.coid = h.parentid
     AND h.primarytype = 'nagpraDetermGroup'
-    AND getnagpra_temp.pos = h.pos;
+    AND getnagpra_temp.pos = h.pos::varchar;
 
     -- get displaynames/notes for nagpraReportFiledGroup data.
     UPDATE getnagpra_temp
@@ -145,7 +145,7 @@ BEGIN
     FROM nagprareportfiledgroup n join hierarchy h on (n.id = h.id)
     WHERE getnagpra_temp.coid = h.parentid
     AND h.primarytype = 'nagpraReportFiledGroup'
-    AND getnagpra_temp.pos = h.pos;
+    AND getnagpra_temp.pos = h.pos::varchar;
 
     -- get displaydate for nagpraReportFiledGroup data.
     UPDATE getnagpra_temp
@@ -162,7 +162,7 @@ BEGIN
     FROM referencegroup n join hierarchy h on (n.id = h.id)
     WHERE getnagpra_temp.coid = h.parentid
     AND h.primarytype = 'referenceGroup'
-    AND getnagpra_temp.pos = h.pos;
+    AND getnagpra_temp.pos = h.pos::varchar;
 
     -- convert returns and newlines to '\n'.
     UPDATE getnagpra_temp SET
