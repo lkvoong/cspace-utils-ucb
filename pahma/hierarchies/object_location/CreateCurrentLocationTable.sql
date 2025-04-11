@@ -11,7 +11,7 @@ $$
   SELECT * INTO utils.current_location_temp
   FROM (
     SELECT
-      cc.id
+      cc.id,
       hcc.name AS collectionobjectcsid,
       GETDISPL(cc.computedcurrentlocation) AS storagelocation,
       GETDISPL(ca.computedcrate) AS crate
