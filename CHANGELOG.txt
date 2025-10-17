@@ -1,0 +1,73 @@
+CHANGELOG for cspace-utils-ucb
+
+OK, it is not a *real* change log, but a list of changes resulting from git log
+sometimes with some human annotation after the fact.
+
+This is version 2.0.0
+Fri Oct 17 10:48:36 PDT 2025
+
+4d272c5 (HEAD -> CSC-2422, upstream/qa, qa) Merge pull request #26 from lkvoong/CSW-979
+9e36ce6 (origin/CSW-979, CSW-979) CSW-979: remove unused joins
+3cd077e CSW-979: Update collectionobjects_common.numberofobjects to objectcountgroup.objectcount
+6d1ae67 Merge pull request #25 from lkvoong/CSC-2385
+9f52409 (origin/CSC-2385, CSC-2385) CSW-2385: add missing comma for CreateCurrentLocationTable()
+d34428b Merge pull request #24 from lkvoong/CSC-2385
+2adc6cf CSC-2385: Update object_place hierarchy objects to use objectcounttype
+abe05a2 Merge pull request #23 from lkvoong/CSC-2350
+af98f66 (origin/CSC-2350, CSC-2350) CSC-2350: add owner, execute privs
+cb037f4 CSC-2350: Update and reorganize PAHMA nagpratype, getnagpra
+4b97d90 Merge pull request #21 from lkvoong/CSC-2352
+4589c75 Merge pull request #22 from lkvoong/CSC-2350
+c69bf6d CSC-2350: update pos field to integer to resolve PG 14 issue with int as string
+452740c (origin/CSC-2352, CSC-2352) CSC-2352: Fix typo in alias for objectnumber
+89e1f8b Merge pull request #20 from lkvoong/CSC-2352
+f04352b CSC-2352: Fix join errors for numberofobjects/objectcount schema change
+455365e CSC-2352: Update tables/views/functions for numberofobjects/objectcount schema change
+531b491 Merge pull request #19 from lkvoong/CSC-2228
+fab5a98 (origin/CSC-2228) CSC-2228: Update refnames for bce, ce dateera values in structuredDateGroup
+7e3a7d8 Merge pull request #17 from lkvoong/v6.0-12
+3b89cc2 (origin/v6.0-12) v6.0-12: clean up and reorganize/rename files
+4acb009 Merge pull request #16 from lkvoong/CSC-2245
+c95d4eb (origin/CSC-2245) CSC-2245: update select into variables
+131d988 CSC-2245: add grant select on utils tables, and default privs for reader_tenant
+2949655 Merge pull request #15 from lkvoong/CSC-2245
+3341309 CSC-2245: Remove extraneous grants
+cbb33cd Merge pull request #14 from lkvoong/CSC-2245
+babe6c2 CSC-2245: Update utils schema privs
+9dad605 CSC-2217: Remove nonexistent table alias un update command
+42bd27a 6-0-12-rc1: BAMPFA CSC-2191; PAHMA CSC-2217, CSC-2233
+78a0c29 Merge pull request #12 from lkvoong/CSC-2233
+fbc6963 Merge pull request #11 from lkvoong/CSC-2217
+9c01a62 Merge pull request #13 from lkvoong/CSC-2191
+d4bfc55 (origin/CSC-2191) CSC-2191: script to update BAMPFA acq sources to refnames
+72bc885 (origin/CSC-2233) CSC-2233: SQL update to convert assocpeoplegroup.assocpeopletype to assocpeople term list
+7c393de CSC-2217: Update Benjamin Peters refname in movements_anthropology_locationhandlers
+b4f4e5f Merge pull request #10 from lkvoong/CSW-813
+a8edc35 CSW-813: adding +x bit to pahma/pahma_refresh.sh
+2adff64 Merge pull request #9 from lkvoong/CSC-1382
+392ed52 (origin/CSC-1382) CSC-1382: add dump-users.sh to 'synch' qa with main
+728298f HMP-270: eliminate invocation of checkstatus.sql; we at RTL will do this
+1ef8546 Merge pull request #6 from lkvoong/HMP-265-qa
+657980f (origin/HMP-265-qa) NOJIRA: remove crontab file
+ab39a68 NOJIRA: remove extraneous line from cinefiles_denorm_nightly.sh
+466710f Merge pull request #5 from lkvoong/HMP-265-qa
+f73d0d9 HMP-265-qa: fix typos in PopObjclassHierTab, RefObjclassHierTab, update HMP-265.sql
+2e21f92 HMP-270: tidy up cspace-utils-ucb a bit, update README
+6c4f3fd Merge pull request #4 from lkvoong/HMP-270-qa
+d06730a (origin/HMP-270-qa) HMP-265: add script to deploy Object Class Hierarchy
+6a9f9bb HMP-265: Update RefObjClassHierTab to add notes and change to plpgsql for consistency
+17b3e47 HMP-265: Update UpdObjClassHierTab to add notes
+6086d78 HMP-265: Update PopObjClassHierTab to check if tab exists; add join to conceptauthorities_common
+9880021 HMP-265: Update CreateObjClassHierTab to drop/recreate table
+b879567 HMP-270-qa: update checkstatus and pahma_refresh to add objectclass
+eed6eca Merge pull request #3 from cspace-deployment/main
+14a6730 Merge pull request #2 from lkvoong/HMP-270
+50f892b (origin/HMP-270) HMP-270: restore checkstatus and pahma_refresh; changes should be added to qa branch
+f401735 HMP-270: add objectclass to checkstatus, update pahma_refresh.sh, update/rename pahma_refresh_ucb.sh
+f3e28b1 HMP-270: move crontab, denorm_init, denorm_nightly
+b0e999d HMP-270: revert UCB pahma_refresh.sh to main dir; add LYR pahma_refresh.sh to pahma dir
+818bcf1 HMP-270: move pahma_refresh.sh, add checkstatus.sql
+5255962 HMP-270: move cinefiles_denorm_nightly.sh under cinefiles directory
+24a0fda Merge pull request #1 from jblowe/main
+186c207 HMP-265: code for PAHMA Hierarchies and CineFiles Denorm, for LYRASIS
+5f13aa9 Initial commit
